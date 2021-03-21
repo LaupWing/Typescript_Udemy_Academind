@@ -108,13 +108,20 @@ class ProjectList{
       this.attach()
       this.renderContent()
       projectState.addListener((projects: Project[])=>{
-         this.assignedProjects = projects
+         const relevantProjects = projects.filter(project=>{
+            if(this.type === 'active'){
+               return project.status === ProjectStatus.Active
+            }
+            return project.status === ProjectStatus.Finished
+         })
+         this.assignedProjects = relevantProjects
          this.renderProjects()
       })
    }
 
    private renderProjects(){
       const list = <HTMLUListElement>document.getElementById(`${this.type}-projects-list`)
+      list.innerHTML = ''
       this.assignedProjects.forEach(item=>{
          const li = document.createElement('li')
          li.textContent = item.title
