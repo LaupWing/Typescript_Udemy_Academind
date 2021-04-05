@@ -9,9 +9,13 @@ const App: React.FC = () => {
          text: 'Finish the course'
       }
    ]
+   const todoAddHandler = (todo: string)=>{
+      console.log(todo)
+   }
+
    return (
       <div className="App">
-         <NewTodo/>
+         <NewTodo onAddTodo={todoAddHandler}/>
          <TodoList items={todos}/>
       </div>
    );
