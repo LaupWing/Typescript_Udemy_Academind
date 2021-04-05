@@ -1,16 +1,14 @@
 import {Router} from 'express'
-import {createTodo} from '../controllers/todos'
+import {createTodo, getTodos, updateTodos} from '../controllers/todos'
 
 const router = Router()
 
 router.post('/', createTodo)
 
-router.get('/', (req, res)=>{
+router.get('/', getTodos)
 
-})
-router.patch('/', (req, res)=>{
+router.patch('/:id', updateTodos)
 
-})
 router.delete('/', (req, res)=>{
 
 })
